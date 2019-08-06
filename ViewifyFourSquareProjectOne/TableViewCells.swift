@@ -12,6 +12,8 @@ import UIKit
 //Custom cell for friends tableview
 class DefaultVenueCell: UITableViewCell {
     
-    
+    @IBOutlet weak var venueName: UILabel!
+    @IBOutlet weak var venueDetailsOne: UILabel!
+    @IBOutlet weak var venueDetailsTwo: UILabel!
     
 }

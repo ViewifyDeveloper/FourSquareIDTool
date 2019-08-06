@@ -15,30 +15,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     @IBOutlet weak var venuesTableView: UITableView!
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return defaultVenues.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = venuesTableView.dequeueReusableCell(withIdentifier: "cellDefaultVenue", for: indexPath) as? DefaultVenueCell{
-            
-            
-            
-            return cell}
-        return UITableViewCell()
-    }
-    
-    
-
-    
-    let CLIENT_ID = "C03BBSQZK3QU10R140T3ADB1KDBKVD3BONRKR0STBGLX2VRI"
-    let CLIENT_SECRET = "O0GGI2JYXDEPCDPQ1143XBFUGGZVYOUNZ3MK343IMC5NIODW"
+    let CLIENT_ID = "OMLSM2ZUXNSMMMDNMUGRVJVMDCYYJ41NUCLDOCVT3QLLLJ1M"
+    let CLIENT_SECRET = "AJ5ILVZLJQY2CRTKQY3XTRMOOCD2L54CD2CEOTHMMY2LNMCI"
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var currentLocationFormattedCoords:String = ""//User's current location
     var nearbyLocationsQueried = false
     
+    enum TableViewMode {
+        case defaultVenues
+        case searchAutoComplete
+    }
+    var currentTableViewMode: TableViewMode = .defaultVenues //Default table view mode starts as "Default Venues" when the app launches
+    
     var defaultVenues: [DefaultVenue] = []
+    var searchAutoComplete: [DefaultVenue] = []
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +41,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         
+        venuesTableView.delegate = self
+        venuesTableView.dataSource = self
+        
         getCurrentLocation()
         
        
         
     }
+    
+    
+    @IBAction func beginEditingSearchBar(_ sender: Any) {
+        
+        //When beginning a search, update the tableView mode and reload the tableview to clear data
+        currentTableViewMode = .searchAutoComplete
+        venuesTableView.reloadData()
+        
+    }
+    
+    @IBAction func searchBarTextChanged(_ sender: UITextField) {
+        
+        print(sender.text)
+        
+    }
+    
     
     func sendRequest(_ url: URL, completion: @escaping (JSON?, Error?) -> Void) {
         
@@ -107,7 +119,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         currentLocationFormattedCoords = String(Double(currentLocation.coordinate.latitude)) + "," + String(Double(currentLocation.coordinate.longitude))
         print("Formatted Coords")
         print(currentLocationFormattedCoords)
-        queryNearbyPlaces()
+      //  queryNearbyPlaces()
     }
     
     
@@ -125,6 +137,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             URLQueryItem(name: "client_id", value: CLIENT_ID),
             URLQueryItem(name: "client_secret", value: CLIENT_SECRET),
             URLQueryItem(name: "v", value: "20180323"),
+            URLQueryItem(name: "limit", value: "1"),
         ]
         
         
@@ -141,10 +154,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
                 for venue in recommendedVenues {
                     print(venue["venue"]["id"].string)
                     if let venueID = venue["venue"]["id"].string{
-                        self.queryVenueDetails(venueID: venueID)
+                        self.queryNearbyVenueDetailsAndPopulateTableView(venueID: venueID)
                     }
                    
                 }
+            }
+            
+            DispatchQueue.main.async {
+                self.venuesTableView.reloadData()
             }
            
       
@@ -154,7 +171,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
     }
     
-    func queryVenueDetails(venueID: String){
+    func queryNearbyVenueDetailsAndPopulateTableView(venueID: String){
         
  
         //do HTTP GET to get the user's current venue
@@ -171,7 +188,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
         sendRequest(urlComponents.url!, completion: { responseObject, error in
             guard let venueDetailsJSON = responseObject, error == nil else {
-                print(error ?? "Unknown error")
+                print(error?.localizedDescription ?? "Unknown error")
                 return
             }
             
@@ -188,6 +205,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             //Add venue address to venue
             if let venueAddress = venueDetails["location"]["formattedAddress"].array{
                 var address = ""
+                var index = 0
                 for addressLines in venueAddress {
                     if let addressLinesString = addressLines.string{
                         address += addressLinesString + ". "
@@ -216,7 +234,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
                         if let openTimes = timeframe["open"].array{
                             for openTime in openTimes {
                                 if let openTimeString = openTime["renderedTime"].string{
-                                    hours += "Open: " + openTimeString
+                                    hours += "Open: " + openTimeString + " "
                                 }
                             }
                         }
@@ -241,12 +259,46 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             //Add venue to list of default venues
             self.defaultVenues.append(nearbyVenue)
             
+            DispatchQueue.main.async {
+                self.venuesTableView.reloadData()
+            }
+            
             print("DEFAULT VENUES COUNT", self.defaultVenues.count)
+            print("VENUE NAME", nearbyVenue.name)
+            print("VENUE ADDRESS", nearbyVenue.address)
+            print("VENUE CATEGORY", nearbyVenue.category)
+            print("VENUE PRICE", nearbyVenue.price)
+            print("VENUE HOURS", nearbyVenue.hours)
             
         })
         
         
         
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        switch currentTableViewMode{
+        case .defaultVenues: return defaultVenues.count
+        case .searchAutoComplete: return searchAutoComplete.count
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = venuesTableView.dequeueReusableCell(withIdentifier: "cellDefaultVenue", for: indexPath) as? DefaultVenueCell{
+            
+            let venue = defaultVenues[indexPath.row]
+            cell.venueName.text = venue.name
+            cell.venueDetailsOne.text = venue.category + " - " + venue.price + " - " + venue.hours
+            cell.venueDetailsTwo.text = venue.address
+            
+            print("RETURN GOOD CELL")
+            
+            return cell} else {
+            print("RETURN BAD CELL")
+            return UITableViewCell()
+        }
     }
     
 }

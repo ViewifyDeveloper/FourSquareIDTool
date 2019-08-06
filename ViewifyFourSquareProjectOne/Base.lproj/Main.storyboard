@@ -35,6 +35,10 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="beginEditingSearchBar:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="n39-yV-fp4"/>
+                                            <action selector="searchBarTextChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="g68-pm-kXM"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,17 +51,50 @@
                                     <constraint firstItem="XrV-2U-JjO" firstAttribute="leading" secondItem="HGk-gd-npA" secondAttribute="trailing" constant="10" id="nqN-eB-lLY"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vRL-Oe-Hsx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vRL-Oe-Hsx">
                                 <rect key="frame" x="0.0" y="164" width="414" height="698"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellDefaultVenue" id="wO2-Fz-eCo" customClass="DefaultVenueCell" customModule="ViewifyFourSquareProjectOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellDefaultVenue" rowHeight="100" id="wO2-Fz-eCo" customClass="DefaultVenueCell" customModule="ViewifyFourSquareProjectOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wO2-Fz-eCo" id="gSJ-3O-V9N">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhR-y1-MjN">
+                                                    <rect key="frame" x="20" y="10" width="61.5" height="29"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXH-UG-21k">
+                                                    <rect key="frame" x="20" y="44" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqB-sr-zDV">
+                                                    <rect key="frame" x="20" y="70" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="aqB-sr-zDV" firstAttribute="leading" secondItem="gXH-UG-21k" secondAttribute="leading" id="9Ku-JM-H2k"/>
+                                                <constraint firstItem="UhR-y1-MjN" firstAttribute="top" secondItem="gSJ-3O-V9N" secondAttribute="top" constant="10" id="Mrr-CE-Hss"/>
+                                                <constraint firstItem="gXH-UG-21k" firstAttribute="top" secondItem="UhR-y1-MjN" secondAttribute="bottom" constant="5" id="OFd-zg-Nxy"/>
+                                                <constraint firstItem="aqB-sr-zDV" firstAttribute="top" secondItem="gXH-UG-21k" secondAttribute="bottom" constant="5" id="ZgU-DB-tjZ"/>
+                                                <constraint firstItem="gXH-UG-21k" firstAttribute="leading" secondItem="UhR-y1-MjN" secondAttribute="leading" id="fjb-vu-6ZL"/>
+                                                <constraint firstItem="UhR-y1-MjN" firstAttribute="leading" secondItem="gSJ-3O-V9N" secondAttribute="leading" constant="20" id="oDM-gm-1cq"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="venueDetailsOne" destination="gXH-UG-21k" id="1dl-Lt-Rz5"/>
+                                            <outlet property="venueDetailsTwo" destination="aqB-sr-zDV" id="bRp-6G-bwm"/>
+                                            <outlet property="venueName" destination="UhR-y1-MjN" id="L3W-Iy-6hq"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
