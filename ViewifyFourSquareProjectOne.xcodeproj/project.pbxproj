@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F606275F22F92AD70037A71E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606275E22F92AD70037A71E /* AppDelegate.swift */; };
+		F606276122F92AD70037A71E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606276022F92AD70037A71E /* ViewController.swift */; };
+		F606276422F92AD70037A71E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F606276222F92AD70037A71E /* Main.storyboard */; };
+		F606276722F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F606276522F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodeld */; };
+		F606276922F92AD80037A71E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F606276822F92AD80037A71E /* Assets.xcassets */; };
+		F606276C22F92AD80037A71E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F606276A22F92AD80037A71E /* LaunchScreen.storyboard */; };
+		F606277722F92AD80037A71E /* ViewifyFourSquareProjectOneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606277622F92AD80037A71E /* ViewifyFourSquareProjectOneTests.swift */; };
+		F606278222F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606278122F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F606277322F92AD80037A71E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F606275322F92AD70037A71E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F606275A22F92AD70037A71E;
+			remoteInfo = ViewifyFourSquareProjectOne;
+		};
+		F606277E22F92AD80037A71E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F606275322F92AD70037A71E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F606275A22F92AD70037A71E;
+			remoteInfo = ViewifyFourSquareProjectOne;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F606275B22F92AD70037A71E /* ViewifyFourSquareProjectOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViewifyFourSquareProjectOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F606275E22F92AD70037A71E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F606276022F92AD70037A71E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F606276322F92AD70037A71E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F606276622F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ViewifyFourSquareProjectOne.xcdatamodel; sourceTree = "<group>"; };
+		F606276822F92AD80037A71E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F606276B22F92AD80037A71E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F606276D22F92AD80037A71E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F606277222F92AD80037A71E /* ViewifyFourSquareProjectOneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViewifyFourSquareProjectOneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F606277622F92AD80037A71E /* ViewifyFourSquareProjectOneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewifyFourSquareProjectOneTests.swift; sourceTree = "<group>"; };
+		F606277822F92AD80037A71E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F606277D22F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViewifyFourSquareProjectOneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F606278122F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewifyFourSquareProjectOneUITests.swift; sourceTree = "<group>"; };
+		F606278322F92AD80037A71E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F606275822F92AD70037A71E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F606276F22F92AD80037A71E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F606277A22F92AD80037A71E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F606275222F92AD70037A71E = {
+			isa = PBXGroup;
+			children = (
+				F606275D22F92AD70037A71E /* ViewifyFourSquareProjectOne */,
+				F606277522F92AD80037A71E /* ViewifyFourSquareProjectOneTests */,
+				F606278022F92AD80037A71E /* ViewifyFourSquareProjectOneUITests */,
+				F606275C22F92AD70037A71E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F606275C22F92AD70037A71E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F606275B22F92AD70037A71E /* ViewifyFourSquareProjectOne.app */,
+				F606277222F92AD80037A71E /* ViewifyFourSquareProjectOneTests.xctest */,
+				F606277D22F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F606275D22F92AD70037A71E /* ViewifyFourSquareProjectOne */ = {
+			isa = PBXGroup;
+			children = (
+				F606275E22F92AD70037A71E /* AppDelegate.swift */,
+				F606276022F92AD70037A71E /* ViewController.swift */,
+				F606276222F92AD70037A71E /* Main.storyboard */,
+				F606276822F92AD80037A71E /* Assets.xcassets */,
+				F606276A22F92AD80037A71E /* LaunchScreen.storyboard */,
+				F606276D22F92AD80037A71E /* Info.plist */,
+				F606276522F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodeld */,
+			);
+			path = ViewifyFourSquareProjectOne;
+			sourceTree = "<group>";
+		};
+		F606277522F92AD80037A71E /* ViewifyFourSquareProjectOneTests */ = {
+			isa = PBXGroup;
+			children = (
+				F606277622F92AD80037A71E /* ViewifyFourSquareProjectOneTests.swift */,
+				F606277822F92AD80037A71E /* Info.plist */,
+			);
+			path = ViewifyFourSquareProjectOneTests;
+			sourceTree = "<group>";
+		};
+		F606278022F92AD80037A71E /* ViewifyFourSquareProjectOneUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F606278122F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.swift */,
+				F606278322F92AD80037A71E /* Info.plist */,
+			);
+			path = ViewifyFourSquareProjectOneUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F606275A22F92AD70037A71E /* ViewifyFourSquareProjectOne */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F606278622F92AD80037A71E /* Build configuration list for PBXNativeTarget "ViewifyFourSquareProjectOne" */;
+			buildPhases = (
+				F606275722F92AD70037A71E /* Sources */,
+				F606275822F92AD70037A71E /* Frameworks */,
+				F606275922F92AD70037A71E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ViewifyFourSquareProjectOne;
+			productName = ViewifyFourSquareProjectOne;
+			productReference = F606275B22F92AD70037A71E /* ViewifyFourSquareProjectOne.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F606277122F92AD80037A71E /* ViewifyFourSquareProjectOneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F606278922F92AD80037A71E /* Build configuration list for PBXNativeTarget "ViewifyFourSquareProjectOneTests" */;
+			buildPhases = (
+				F606276E22F92AD80037A71E /* Sources */,
+				F606276F22F92AD80037A71E /* Frameworks */,
+				F606277022F92AD80037A71E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F606277422F92AD80037A71E /* PBXTargetDependency */,
+			);
+			name = ViewifyFourSquareProjectOneTests;
+			productName = ViewifyFourSquareProjectOneTests;
+			productReference = F606277222F92AD80037A71E /* ViewifyFourSquareProjectOneTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F606277C22F92AD80037A71E /* ViewifyFourSquareProjectOneUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F606278C22F92AD80037A71E /* Build configuration list for PBXNativeTarget "ViewifyFourSquareProjectOneUITests" */;
+			buildPhases = (
+				F606277922F92AD80037A71E /* Sources */,
+				F606277A22F92AD80037A71E /* Frameworks */,
+				F606277B22F92AD80037A71E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F606277F22F92AD80037A71E /* PBXTargetDependency */,
+			);
+			name = ViewifyFourSquareProjectOneUITests;
+			productName = ViewifyFourSquareProjectOneUITests;
+			productReference = F606277D22F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F606275322F92AD70037A71E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Patrick Doyle";
+				TargetAttributes = {
+					F606275A22F92AD70037A71E = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					F606277122F92AD80037A71E = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = F606275A22F92AD70037A71E;
+					};
+					F606277C22F92AD80037A71E = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = F606275A22F92AD70037A71E;
+					};
+				};
+			};
+			buildConfigurationList = F606275622F92AD70037A71E /* Build configuration list for PBXProject "ViewifyFourSquareProjectOne" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F606275222F92AD70037A71E;
+			productRefGroup = F606275C22F92AD70037A71E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F606275A22F92AD70037A71E /* ViewifyFourSquareProjectOne */,
+				F606277122F92AD80037A71E /* ViewifyFourSquareProjectOneTests */,
+				F606277C22F92AD80037A71E /* ViewifyFourSquareProjectOneUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F606275922F92AD70037A71E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F606276C22F92AD80037A71E /* LaunchScreen.storyboard in Resources */,
+				F606276922F92AD80037A71E /* Assets.xcassets in Resources */,
+				F606276422F92AD70037A71E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F606277022F92AD80037A71E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F606277B22F92AD80037A71E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F606275722F92AD70037A71E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F606276122F92AD70037A71E /* ViewController.swift in Sources */,
+				F606276722F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodeld in Sources */,
+				F606275F22F92AD70037A71E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F606276E22F92AD80037A71E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F606277722F92AD80037A71E /* ViewifyFourSquareProjectOneTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F606277922F92AD80037A71E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F606278222F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F606277422F92AD80037A71E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F606275A22F92AD70037A71E /* ViewifyFourSquareProjectOne */;
+			targetProxy = F606277322F92AD80037A71E /* PBXContainerItemProxy */;
+		};
+		F606277F22F92AD80037A71E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F606275A22F92AD70037A71E /* ViewifyFourSquareProjectOne */;
+			targetProxy = F606277E22F92AD80037A71E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F606276222F92AD70037A71E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F606276322F92AD70037A71E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F606276A22F92AD80037A71E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F606276B22F92AD80037A71E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F606278422F92AD80037A71E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F606278522F92AD80037A71E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F606278722F92AD80037A71E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5FXSK8WB9T;
+				INFOPLIST_FILE = ViewifyFourSquareProjectOne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.patpatchpatrick.ViewifyFourSquareProjectOne;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F606278822F92AD80037A71E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5FXSK8WB9T;
+				INFOPLIST_FILE = ViewifyFourSquareProjectOne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.patpatchpatrick.ViewifyFourSquareProjectOne;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F606278A22F92AD80037A71E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5FXSK8WB9T;
+				INFOPLIST_FILE = ViewifyFourSquareProjectOneTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.patpatchpatrick.ViewifyFourSquareProjectOneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ViewifyFourSquareProjectOne.app/ViewifyFourSquareProjectOne";
+			};
+			name = Debug;
+		};
+		F606278B22F92AD80037A71E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5FXSK8WB9T;
+				INFOPLIST_FILE = ViewifyFourSquareProjectOneTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.patpatchpatrick.ViewifyFourSquareProjectOneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ViewifyFourSquareProjectOne.app/ViewifyFourSquareProjectOne";
+			};
+			name = Release;
+		};
+		F606278D22F92AD80037A71E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5FXSK8WB9T;
+				INFOPLIST_FILE = ViewifyFourSquareProjectOneUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.patpatchpatrick.ViewifyFourSquareProjectOneUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ViewifyFourSquareProjectOne;
+			};
+			name = Debug;
+		};
+		F606278E22F92AD80037A71E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5FXSK8WB9T;
+				INFOPLIST_FILE = ViewifyFourSquareProjectOneUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.patpatchpatrick.ViewifyFourSquareProjectOneUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ViewifyFourSquareProjectOne;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F606275622F92AD70037A71E /* Build configuration list for PBXProject "ViewifyFourSquareProjectOne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F606278422F92AD80037A71E /* Debug */,
+				F606278522F92AD80037A71E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F606278622F92AD80037A71E /* Build configuration list for PBXNativeTarget "ViewifyFourSquareProjectOne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F606278722F92AD80037A71E /* Debug */,
+				F606278822F92AD80037A71E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F606278922F92AD80037A71E /* Build configuration list for PBXNativeTarget "ViewifyFourSquareProjectOneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F606278A22F92AD80037A71E /* Debug */,
+				F606278B22F92AD80037A71E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F606278C22F92AD80037A71E /* Build configuration list for PBXNativeTarget "ViewifyFourSquareProjectOneUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F606278D22F92AD80037A71E /* Debug */,
+				F606278E22F92AD80037A71E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F606276522F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F606276622F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodel */,
+			);
+			currentVersion = F606276622F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodel */;
+			path = ViewifyFourSquareProjectOne.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F606275322F92AD70037A71E /* Project object */;
+}
