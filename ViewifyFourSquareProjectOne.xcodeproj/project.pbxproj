@@ -20,7 +20,6 @@
 		F606278222F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606278122F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.swift */; };
 		F6763DB322F9CB4F002CB48A /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6763DB222F9CB4F002CB48A /* TableViewCells.swift */; };
 		F6763DB522F9CC00002CB48A /* Venues.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6763DB422F9CC00002CB48A /* Venues.swift */; };
-		F6763DB722F9F38A002CB48A /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6763DB622F9F38A002CB48A /* TestJSON.swift */; };
 		F6763DB922FA0EDB002CB48A /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6763DB822FA0EDB002CB48A /* Networking.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +66,6 @@
 		F606278322F92AD80037A71E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6763DB222F9CB4F002CB48A /* TableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
 		F6763DB422F9CC00002CB48A /* Venues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venues.swift; sourceTree = "<group>"; };
-		F6763DB622F9F38A002CB48A /* TestJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = "<group>"; };
 		F6763DB822FA0EDB002CB48A /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +141,6 @@
 				F606276522F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodeld */,
 				F6763DB222F9CB4F002CB48A /* TableViewCells.swift */,
 				F6763DB422F9CC00002CB48A /* Venues.swift */,
-				F6763DB622F9F38A002CB48A /* TestJSON.swift */,
 				F6763DB822FA0EDB002CB48A /* Networking.swift */,
 			);
 			path = ViewifyFourSquareProjectOne;
@@ -411,7 +408,6 @@
 				F606276722F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodeld in Sources */,
 				F606275F22F92AD70037A71E /* AppDelegate.swift in Sources */,
 				F6763DB522F9CC00002CB48A /* Venues.swift in Sources */,
-				F6763DB722F9F38A002CB48A /* TestJSON.swift in Sources */,
 				F6763DB922FA0EDB002CB48A /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

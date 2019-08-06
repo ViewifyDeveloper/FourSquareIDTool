@@ -20,16 +20,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     let locationManager = CLLocationManager()
     var networking:Networking?
     
-    
+    //TableView can display 3 main types of data, nearby venues, auto-complete data, searched venues
     enum TableViewMode {
-        case defaultVenues
-        case searchAutoComplete
-        case searchedVenues
+        case nearby
+        case autoComplete
+        case search
     }
-    var currentTableViewMode: TableViewMode = .defaultVenues //Default table view mode starts as "Default Venues" when the app launches
     
-    var defaultVenues: [Venue] = []
-    var searchAutoComplete: [Venue] = []
+    //Default table view mode starts as "nearby venues" when the app launches
+    var currentTableViewMode: TableViewMode = .nearby
+    
+    var nearbyVenues: [Venue] = []
+    var autoCompleteVenues: [Venue] = []
     var searchedVenues: [Venue] = []
     
     override func viewDidLoad() {
@@ -57,7 +59,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     @IBAction func beginEditingSearchBar(_ sender: Any) {
         
         //When beginning a search, update the tableView mode and reload the tableview to clear data
-        currentTableViewMode = .searchAutoComplete
+        currentTableViewMode = .autoComplete
         venuesTableView.reloadData()
         
     }
@@ -75,8 +77,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             venuesTableView.reloadData()
             return}
         
+        //Clear list of autoComplete venues when text is changed so that duplicate data does not appear
+        autoCompleteVenues = []
+        
         //If text is long enough, update app mode to "AutoComplete" and peform suggested auto-complete query
-        self.currentTableViewMode = .searchAutoComplete
+        self.currentTableViewMode = .autoComplete
         networking?.queryAutoCompleteVenues(autoCompleteString: suggestSearchText)
         
     }
@@ -110,50 +115,87 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch currentTableViewMode{
-        case .defaultVenues: return defaultVenues.count
-        case .searchAutoComplete: return searchAutoComplete.count
-        case .searchedVenues: return searchedVenues.count
+        case .nearby: return nearbyVenues.count
+        case .autoComplete: return autoCompleteVenues.count
+        case .search: return searchedVenues.count
         }
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = venuesTableView.dequeueReusableCell(withIdentifier: "cellDefaultVenue", for: indexPath) as? DefaultVenueCell{
-            
-            //Get venue from appropriate list depending on tableView mode
-            var venue = Venue()
-            switch currentTableViewMode{
-            case .defaultVenues: venue = defaultVenues[indexPath.row]
-            case .searchAutoComplete: venue = searchAutoComplete[indexPath.row]
-            case .searchedVenues: venue = searchedVenues[indexPath.row]
-            }
-            
+        
+        //Return appropriate tableView cell type depending on data being displayed
+        //"Nearby" and "Search" mode both show full venue details
+        //"Autocomplete" mode only shows venue name
+        
+        switch currentTableViewMode {
+        case .autoComplete:
+            let venue = autoCompleteVenues[indexPath.row]
+            return configureBasicSingleNameCell(venue: venue, indexPath: indexPath)
+        case .nearby:
+             let venue = nearbyVenues[indexPath.row]
+             return configureDetailedVenueCell(venue: venue, indexPath: indexPath)
+        case .search:
+            let venue = searchedVenues[indexPath.row]
+            return configureDetailedVenueCell(venue: venue, indexPath: indexPath)
+        }
+        
+        
+    }
+    
+    func configureBasicSingleNameCell(venue: Venue, indexPath: IndexPath) -> SearchAutoCompleteCell{
+        //Configure cell with only venue name
+        if let cell = venuesTableView.dequeueReusableCell(withIdentifier: "cellSearchAutoComplete", for: indexPath) as? SearchAutoCompleteCell{
+           
             cell.venueName.text = venue.name
-            cell.venueDetailsOne.text = venue.category + " - " + venue.price + " - " + venue.hours
-            cell.venueDetailsTwo.text = venue.address
             
-            print("RETURN GOOD CELL")
+            return cell
             
-            return cell} else {
-            print("RETURN BAD CELL")
-            return UITableViewCell()
+        } else {
+            return SearchAutoCompleteCell()
         }
     }
     
+    func configureDetailedVenueCell(venue: Venue, indexPath: IndexPath) -> VenueCell {
+        //Configure cell with full Venue Details
+        if let cell = venuesTableView.dequeueReusableCell(withIdentifier: "cellDefaultVenue", for: indexPath) as? VenueCell{
+            
+            cell.venueName.text = venue.name
+            var firstSubString = ""
+            if venue.price != "" {
+                firstSubString += venue.price
+            }
+            if venue.category != "" {
+                if venue.price != "" {
+                    firstSubString += " \u{2022} " + venue.category
+                } else {
+                    firstSubString += venue.category
+                }
+            }
+            cell.venueDetailsOne.text = firstSubString
+            cell.venueDetailsTwo.text = venue.hours
+            cell.venueDetailsThree.text = venue.address
+            
+            return cell
+        } else {
+            return VenueCell()
+        }
+    }
+    
+    //TableView item tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Update the text in the search bar if a table view venue is tapped
         //If the venue clicked is an auto-complete venue, then perform a venue search using the venue name
         switch currentTableViewMode {
-        case .defaultVenues: searchBar.text = defaultVenues[indexPath.row].name
-        case .searchAutoComplete:
-            let venueToSearch = searchAutoComplete[indexPath.row].name
+        case .nearby: searchBar.text = nearbyVenues[indexPath.row].name
+        case .autoComplete:
+            let venueToSearch = autoCompleteVenues[indexPath.row].name
             searchBar.text = venueToSearch
-            currentTableViewMode = .searchedVenues //Update tableViewMode to "search"
+            currentTableViewMode = .search //Update tableViewMode to "search"
             searchedVenues = [] //Clear searchedVenues array since new search is being queried
             venuesTableView.reloadData() //Reload/clear tableview so user knows that a search is being performed
             networking?.queryVenuesUsingSearch(venueName: venueToSearch) //Search for venue
-            
-        case .searchedVenues:
+        case .search:
             searchBar.text = searchedVenues[indexPath.row].name
         }
     }
@@ -163,9 +205,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
         //Depending on app mode, add venue to appropriate array
         switch self.currentTableViewMode{
-        case .defaultVenues: self.defaultVenues.append(venue)
-        case .searchAutoComplete: self.searchAutoComplete.append(venue)
-        case .searchedVenues: self.searchedVenues.append(venue)
+        case .nearby: self.nearbyVenues.append(venue)
+        case .autoComplete: self.autoCompleteVenues.append(venue)
+        case .search: self.searchedVenues.append(venue)
         }
         
         //Reload tableView to display new data

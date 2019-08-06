@@ -9,11 +9,19 @@
 import Foundation
 import UIKit
 
-//Custom cell for friends tableview
-class DefaultVenueCell: UITableViewCell {
+//Custom cell for venues tableView
+class VenueCell: UITableViewCell {
     
     @IBOutlet weak var venueName: UILabel!
     @IBOutlet weak var venueDetailsOne: UILabel!
     @IBOutlet weak var venueDetailsTwo: UILabel!
+    
+    @IBOutlet weak var venueDetailsThree: UILabel!
+    
+}
+
+class SearchAutoCompleteCell: UITableViewCell {
+    
+    @IBOutlet weak var venueName: UILabel!
     
 }

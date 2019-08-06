@@ -21,10 +21,12 @@ protocol NetworkingDelegate: class
 class Networking {
     
     var delegate: NetworkingDelegate
+    //API app identifiers
     let CLIENT_ID = "OMLSM2ZUXNSMMMDNMUGRVJVMDCYYJ41NUCLDOCVT3QLLLJ1M"
     let CLIENT_SECRET = "AJ5ILVZLJQY2CRTKQY3XTRMOOCD2L54CD2CEOTHMMY2LNMCI"
     var nearbyLocationsQueried = false
     var autoCompleteVenuesQueried = false
+    //API query settings (date and limit)
     var callLimit:Int = 2
     var apiVersion: String = "20180323"
     
@@ -100,10 +102,6 @@ class Networking {
     
     func queryAutoCompleteVenues(autoCompleteString: String){
         //Query venue auto-complete names based on text entered in search bar
-        
-        //Prevent overflow of queries
-        if autoCompleteVenuesQueried {return}
-        autoCompleteVenuesQueried = true
         
         //Configure API URL and parameters
         let urlComponents = NSURLComponents(string: "https://api.foursquare.com/v2/venues/suggestcompletion")!

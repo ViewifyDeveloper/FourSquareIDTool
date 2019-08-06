@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Class for venue data
 class Venue {
     
     var name: String = ""
