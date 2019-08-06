@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3888430D83FE8BA4D72C57BC /* Pods_ViewifyFourSquareProjectOneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC45EEB7BF3B4018843CA62 /* Pods_ViewifyFourSquareProjectOneTests.framework */; };
+		5C4F07055D8925DE2D2BFA1B /* Pods_ViewifyFourSquareProjectOneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C73474A0A3B20441C20B6B3 /* Pods_ViewifyFourSquareProjectOneUITests.framework */; };
+		DBF08341A3D76604C935C7EF /* Pods_ViewifyFourSquareProjectOne.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BCBF1DC78C9C0E01A57F5C0 /* Pods_ViewifyFourSquareProjectOne.framework */; };
 		F606275F22F92AD70037A71E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606275E22F92AD70037A71E /* AppDelegate.swift */; };
 		F606276122F92AD70037A71E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606276022F92AD70037A71E /* ViewController.swift */; };
 		F606276422F92AD70037A71E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F606276222F92AD70037A71E /* Main.storyboard */; };
@@ -15,6 +18,8 @@
 		F606276C22F92AD80037A71E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F606276A22F92AD80037A71E /* LaunchScreen.storyboard */; };
 		F606277722F92AD80037A71E /* ViewifyFourSquareProjectOneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606277622F92AD80037A71E /* ViewifyFourSquareProjectOneTests.swift */; };
 		F606278222F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606278122F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.swift */; };
+		F6763DB322F9CB4F002CB48A /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6763DB222F9CB4F002CB48A /* TableViewCells.swift */; };
+		F6763DB522F9CC00002CB48A /* Venues.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6763DB422F9CC00002CB48A /* Venues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C73474A0A3B20441C20B6B3 /* Pods_ViewifyFourSquareProjectOneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViewifyFourSquareProjectOneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BCBF1DC78C9C0E01A57F5C0 /* Pods_ViewifyFourSquareProjectOne.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViewifyFourSquareProjectOne.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		272BEF7DEA2FE299E266C885 /* Pods-ViewifyFourSquareProjectOneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViewifyFourSquareProjectOneUITests.release.xcconfig"; path = "Target Support Files/Pods-ViewifyFourSquareProjectOneUITests/Pods-ViewifyFourSquareProjectOneUITests.release.xcconfig"; sourceTree = "<group>"; };
+		28968C380D5445CC37533C8F /* Pods-ViewifyFourSquareProjectOneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViewifyFourSquareProjectOneTests.release.xcconfig"; path = "Target Support Files/Pods-ViewifyFourSquareProjectOneTests/Pods-ViewifyFourSquareProjectOneTests.release.xcconfig"; sourceTree = "<group>"; };
+		5B04B46BC7619A5962E6E0F9 /* Pods-ViewifyFourSquareProjectOne.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViewifyFourSquareProjectOne.debug.xcconfig"; path = "Target Support Files/Pods-ViewifyFourSquareProjectOne/Pods-ViewifyFourSquareProjectOne.debug.xcconfig"; sourceTree = "<group>"; };
+		AA35D088BF25AE2927E720C8 /* Pods-ViewifyFourSquareProjectOneUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViewifyFourSquareProjectOneUITests.debug.xcconfig"; path = "Target Support Files/Pods-ViewifyFourSquareProjectOneUITests/Pods-ViewifyFourSquareProjectOneUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B1C21E42317E070B807ED287 /* Pods-ViewifyFourSquareProjectOneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViewifyFourSquareProjectOneTests.debug.xcconfig"; path = "Target Support Files/Pods-ViewifyFourSquareProjectOneTests/Pods-ViewifyFourSquareProjectOneTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B2556FA3864927A61B129614 /* Pods-ViewifyFourSquareProjectOne.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViewifyFourSquareProjectOne.release.xcconfig"; path = "Target Support Files/Pods-ViewifyFourSquareProjectOne/Pods-ViewifyFourSquareProjectOne.release.xcconfig"; sourceTree = "<group>"; };
+		DEC45EEB7BF3B4018843CA62 /* Pods_ViewifyFourSquareProjectOneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViewifyFourSquareProjectOneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F606275B22F92AD70037A71E /* ViewifyFourSquareProjectOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViewifyFourSquareProjectOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F606275E22F92AD70037A71E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F606276022F92AD70037A71E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +63,8 @@
 		F606277D22F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViewifyFourSquareProjectOneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F606278122F92AD80037A71E /* ViewifyFourSquareProjectOneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewifyFourSquareProjectOneUITests.swift; sourceTree = "<group>"; };
 		F606278322F92AD80037A71E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6763DB222F9CB4F002CB48A /* TableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
+		F6763DB422F9CC00002CB48A /* Venues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venues.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBF08341A3D76604C935C7EF /* Pods_ViewifyFourSquareProjectOne.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3888430D83FE8BA4D72C57BC /* Pods_ViewifyFourSquareProjectOneTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +88,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C4F07055D8925DE2D2BFA1B /* Pods_ViewifyFourSquareProjectOneUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32CF1DC3F62E3FCFA7BEF7A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1BCBF1DC78C9C0E01A57F5C0 /* Pods_ViewifyFourSquareProjectOne.framework */,
+				DEC45EEB7BF3B4018843CA62 /* Pods_ViewifyFourSquareProjectOneTests.framework */,
+				0C73474A0A3B20441C20B6B3 /* Pods_ViewifyFourSquareProjectOneUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F606275222F92AD70037A71E = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +112,8 @@
 				F606277522F92AD80037A71E /* ViewifyFourSquareProjectOneTests */,
 				F606278022F92AD80037A71E /* ViewifyFourSquareProjectOneUITests */,
 				F606275C22F92AD70037A71E /* Products */,
+				F702F335166A7392CDDD5114 /* Pods */,
+				32CF1DC3F62E3FCFA7BEF7A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +137,8 @@
 				F606276A22F92AD80037A71E /* LaunchScreen.storyboard */,
 				F606276D22F92AD80037A71E /* Info.plist */,
 				F606276522F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodeld */,
+				F6763DB222F9CB4F002CB48A /* TableViewCells.swift */,
+				F6763DB422F9CC00002CB48A /* Venues.swift */,
 			);
 			path = ViewifyFourSquareProjectOne;
 			sourceTree = "<group>";
@@ -128,6 +161,20 @@
 			path = ViewifyFourSquareProjectOneUITests;
 			sourceTree = "<group>";
 		};
+		F702F335166A7392CDDD5114 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5B04B46BC7619A5962E6E0F9 /* Pods-ViewifyFourSquareProjectOne.debug.xcconfig */,
+				B2556FA3864927A61B129614 /* Pods-ViewifyFourSquareProjectOne.release.xcconfig */,
+				B1C21E42317E070B807ED287 /* Pods-ViewifyFourSquareProjectOneTests.debug.xcconfig */,
+				28968C380D5445CC37533C8F /* Pods-ViewifyFourSquareProjectOneTests.release.xcconfig */,
+				AA35D088BF25AE2927E720C8 /* Pods-ViewifyFourSquareProjectOneUITests.debug.xcconfig */,
+				272BEF7DEA2FE299E266C885 /* Pods-ViewifyFourSquareProjectOneUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +182,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F606278622F92AD80037A71E /* Build configuration list for PBXNativeTarget "ViewifyFourSquareProjectOne" */;
 			buildPhases = (
+				E4C02475D45E4E7A04AEC578 /* [CP] Check Pods Manifest.lock */,
 				F606275722F92AD70037A71E /* Sources */,
 				F606275822F92AD70037A71E /* Frameworks */,
 				F606275922F92AD70037A71E /* Resources */,
+				C3A50BD4551D8E44F017B3B4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +201,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F606278922F92AD80037A71E /* Build configuration list for PBXNativeTarget "ViewifyFourSquareProjectOneTests" */;
 			buildPhases = (
+				841182100A574925936BA595 /* [CP] Check Pods Manifest.lock */,
 				F606276E22F92AD80037A71E /* Sources */,
 				F606276F22F92AD80037A71E /* Frameworks */,
 				F606277022F92AD80037A71E /* Resources */,
@@ -170,6 +220,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F606278C22F92AD80037A71E /* Build configuration list for PBXNativeTarget "ViewifyFourSquareProjectOneUITests" */;
 			buildPhases = (
+				E966AD5CAE35BE36F1A22423 /* [CP] Check Pods Manifest.lock */,
 				F606277922F92AD80037A71E /* Sources */,
 				F606277A22F92AD80037A71E /* Frameworks */,
 				F606277B22F92AD80037A71E /* Resources */,
@@ -254,14 +305,107 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		841182100A574925936BA595 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ViewifyFourSquareProjectOneTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3A50BD4551D8E44F017B3B4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ViewifyFourSquareProjectOne/Pods-ViewifyFourSquareProjectOne-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ViewifyFourSquareProjectOne/Pods-ViewifyFourSquareProjectOne-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4C02475D45E4E7A04AEC578 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ViewifyFourSquareProjectOne-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E966AD5CAE35BE36F1A22423 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ViewifyFourSquareProjectOneUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F606275722F92AD70037A71E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F606276122F92AD70037A71E /* ViewController.swift in Sources */,
+				F6763DB322F9CB4F002CB48A /* TableViewCells.swift in Sources */,
 				F606276722F92AD70037A71E /* ViewifyFourSquareProjectOne.xcdatamodeld in Sources */,
 				F606275F22F92AD70037A71E /* AppDelegate.swift in Sources */,
+				F6763DB522F9CC00002CB48A /* Venues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +578,7 @@
 		};
 		F606278722F92AD80037A71E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B04B46BC7619A5962E6E0F9 /* Pods-ViewifyFourSquareProjectOne.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -452,6 +597,7 @@
 		};
 		F606278822F92AD80037A71E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2556FA3864927A61B129614 /* Pods-ViewifyFourSquareProjectOne.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +616,7 @@
 		};
 		F606278A22F92AD80037A71E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1C21E42317E070B807ED287 /* Pods-ViewifyFourSquareProjectOneTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +638,7 @@
 		};
 		F606278B22F92AD80037A71E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28968C380D5445CC37533C8F /* Pods-ViewifyFourSquareProjectOneTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +660,7 @@
 		};
 		F606278D22F92AD80037A71E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA35D088BF25AE2927E720C8 /* Pods-ViewifyFourSquareProjectOneUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +681,7 @@
 		};
 		F606278E22F92AD80037A71E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 272BEF7DEA2FE299E266C885 /* Pods-ViewifyFourSquareProjectOneUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
