@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DefaultVenue {
+class Venue {
     
     var name: String = ""
     var address: String = ""

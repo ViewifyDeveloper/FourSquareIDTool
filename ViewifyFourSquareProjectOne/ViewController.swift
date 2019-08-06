@@ -10,15 +10,15 @@ import UIKit
 import MapKit
 import SwiftyJSON
 
-let locationManager = CLLocationManager()
 var currentLocation: CLLocation?
 var currentLocationFormattedCoords:String = ""//User's current location
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
-    
+class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, NetworkingDelegate {
     
     @IBOutlet weak var venuesTableView: UITableView!
     @IBOutlet weak var searchBar: UITextField!
+    let locationManager = CLLocationManager()
+    var networking:Networking?
     
     
     enum TableViewMode {
@@ -28,14 +28,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     }
     var currentTableViewMode: TableViewMode = .defaultVenues //Default table view mode starts as "Default Venues" when the app launches
     
-    var defaultVenues: [DefaultVenue] = []
-    var searchAutoComplete: [DefaultVenue] = []
-    var searchedVenues: [DefaultVenue] = []
-    
-    
+    var defaultVenues: [Venue] = []
+    var searchAutoComplete: [Venue] = []
+    var searchedVenues: [Venue] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         //Request location authorizations
         self.locationManager.requestAlwaysAuthorization()
@@ -44,6 +43,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         //Set tableViewDelegates
         venuesTableView.delegate = self
         venuesTableView.dataSource = self
+        
+        //Set up networking class
+        networking = Networking(delegate: self)
         
         //Get user's location and show default nearby venues
         getCurrentLocationAndNearbyVenues()
@@ -62,23 +64,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     @IBAction func searchBarTextChanged(_ sender: UITextField) {
         
-        print(sender.text)
+        //When the user enters text in search bar, perform suggested auto-complete query
+        //If the text is less than 4 characters, do not perform a query because API does not support small String lengths
+        
+        //Get user entered text
         guard let suggestSearchText = sender.text else {return}
-        if suggestSearchText.count < 4 {return} //Suggest autoComplete API only works with at least 3 characters
-        self.currentTableViewMode = .searchAutoComplete //Update currentTableViewMode so tableview shows correct datatype
+        //If text is too short, clear tableview and return
+        if suggestSearchText.count < 4 {
+            searchedVenues = []
+            venuesTableView.reloadData()
+            return}
         
-        //Query for places using auto-complete API
-        queryAutoCompleteVenues(autoCompleteString: suggestSearchText)
-        
-        
+        //If text is long enough, update app mode to "AutoComplete" and peform suggested auto-complete query
+        self.currentTableViewMode = .searchAutoComplete
+        networking?.queryAutoCompleteVenues(autoCompleteString: suggestSearchText)
         
     }
     
-
-    
+    //Retrieve user's current location
     func getCurrentLocationAndNearbyVenues(){
         if currentLocation == nil {
-            //Get user's current location
             DispatchQueue.global(qos: .userInteractive).async {
                 if CLLocationManager.locationServicesEnabled() {
                     self.locationManager.delegate = self
@@ -86,71 +91,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
                     self.locationManager.startUpdatingLocation()
                 }
             }
-        } else {
-           // currentLocationRetrieved()
         }
     }
     
+    //User's current location retrieved
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //Update current location and formatted coordinates for API queries
         for location in locations{
             currentLocation = location
         }
-        print("COORDINATES")
-        print(currentLocation?.coordinate)
         guard let currentLocation = currentLocation else {return}
         currentLocationFormattedCoords = String(Double(currentLocation.coordinate.latitude)) + "," + String(Double(currentLocation.coordinate.longitude))
-        print("Formatted Coords")
-        print(currentLocationFormattedCoords)
-      //  queryNearbyPlaces()
-    }
-    
-    
-    func queryNearbyPlaces(){
-        
-        if nearbyLocationsQueried{return}
-        
-        nearbyLocationsQueried = true
-        //do HTTP GET to get the user's current venue
-        
-        var urlComponents = NSURLComponents(string: "https://api.foursquare.com/v2/venues/explore")!
-        
-        urlComponents.queryItems = [
-            URLQueryItem(name: "ll", value: currentLocationFormattedCoords),
-            URLQueryItem(name: "client_id", value: CLIENT_ID),
-            URLQueryItem(name: "client_secret", value: CLIENT_SECRET),
-            URLQueryItem(name: "v", value: "20180323"),
-            URLQueryItem(name: "limit", value: "1"),
-        ]
-        
-        
-        
-        sendGetRequest(urlComponents.url!, completion: { responseObject, error in
-            guard let nearbyVenuesJSON = responseObject, error == nil else {
-                print(error ?? "Unknown error")
-                return
-            }
-            
-            //print(nearbyVenuesJSON.description)
-            if let recommendedVenues = nearbyVenuesJSON[0]["response"]["groups"][0]["items"].array {
-                print("VenuesCount", recommendedVenues.count)
-                for venue in recommendedVenues {
-                    print(venue["venue"]["id"].string)
-                    if let venueID = venue["venue"]["id"].string{
-                        self.queryVenueDetailsAndPopulateTableView(venueID: venueID)
-                    }
-                   
-                }
-            }
-            
-            DispatchQueue.main.async {
-                self.venuesTableView.reloadData()
-            }
-           
-      
-        })
-        
-        
-        
+  
+        //Query nearby venues as soon as location is found
+        networking?.queryNearbyVenues()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -167,7 +121,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         if let cell = venuesTableView.dequeueReusableCell(withIdentifier: "cellDefaultVenue", for: indexPath) as? DefaultVenueCell{
             
             //Get venue from appropriate list depending on tableView mode
-            var venue = DefaultVenue()
+            var venue = Venue()
             switch currentTableViewMode{
             case .defaultVenues: venue = defaultVenues[indexPath.row]
             case .searchAutoComplete: venue = searchAutoComplete[indexPath.row]
@@ -197,109 +151,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             currentTableViewMode = .searchedVenues //Update tableViewMode to "search"
             searchedVenues = [] //Clear searchedVenues array since new search is being queried
             venuesTableView.reloadData() //Reload/clear tableview so user knows that a search is being performed
-            queryVenuesUsingSearch(venueName: venueToSearch) //Search for venue
+            networking?.queryVenuesUsingSearch(venueName: venueToSearch) //Search for venue
             
         case .searchedVenues:
             searchBar.text = searchedVenues[indexPath.row].name
         }
     }
     
-    func queryAutoCompleteVenues(autoCompleteString: String){
+    //Callback from networking class when TableView data needs to be appended
+    func appendTableViewVenues(venue: Venue) {
         
-        if autoCompleteVenuesQueried {return}
-        autoCompleteVenuesQueried = true
+        //Depending on app mode, add venue to appropriate array
+        switch self.currentTableViewMode{
+        case .defaultVenues: self.defaultVenues.append(venue)
+        case .searchAutoComplete: self.searchAutoComplete.append(venue)
+        case .searchedVenues: self.searchedVenues.append(venue)
+        }
         
-        print("QUERYING AUTO COMPLETE")
-        
-        var urlComponents = NSURLComponents(string: "https://api.foursquare.com/v2/venues/suggestcompletion")!
-        
-        urlComponents.queryItems = [
-            URLQueryItem(name: "ll", value: currentLocationFormattedCoords),
-            URLQueryItem(name: "client_id", value: CLIENT_ID),
-            URLQueryItem(name: "client_secret", value: CLIENT_SECRET),
-            URLQueryItem(name: "v", value: "20180323"),
-            URLQueryItem(name: "limit", value: "1"),
-            URLQueryItem(name: "query", value: autoCompleteString),
-        ]
-        
-        
-        
-        sendGetRequest(urlComponents.url!, completion: { responseObject, error in
-            guard let suggestedVenuesJSON = responseObject, error == nil else {
-                print(error ?? "Unknown error")
-                return
-            }
-            
-            print("AUTOCOMPLETE RECEIVED")
-            print(suggestedVenuesJSON)
-            if let suggestedVenues = suggestedVenuesJSON[0]["response"]["minivenues"].array {
-                print("MiniVenuesCount", suggestedVenues.count)
-                for venue in suggestedVenues {
-                    if let venueName = venue["name"].string{
-                        var autoCompleteVenue = DefaultVenue()
-                        autoCompleteVenue.name = venueName
-                        
-                        self.searchAutoComplete.append(autoCompleteVenue)
-                    }
-                    
-                }
-            }
-            
-            DispatchQueue.main.async {
-                self.venuesTableView.reloadData()
-            }
-            
-            
-        })
-        
-        
-        
+        //Reload tableView to display new data
+        DispatchQueue.main.async {
+            self.venuesTableView.reloadData()
+        }
     }
     
-    func queryVenuesUsingSearch(venueName: String){
-        
-        print("QUERYING SEARCH")
-        
-        var urlComponents = NSURLComponents(string: "https://api.foursquare.com/v2/venues/search")!
-        
-        urlComponents.queryItems = [
-            URLQueryItem(name: "ll", value: currentLocationFormattedCoords),
-            URLQueryItem(name: "client_id", value: CLIENT_ID),
-            URLQueryItem(name: "client_secret", value: CLIENT_SECRET),
-            URLQueryItem(name: "v", value: "20180323"),
-            URLQueryItem(name: "limit", value: "2"),
-            URLQueryItem(name: "query", value: venueName),
-        ]
-        
-        
-        
-        sendGetRequest(urlComponents.url!, completion: { responseObject, error in
-            guard let searchedVenuesJSON = responseObject, error == nil else {
-                print(error ?? "Unknown error")
-                return
-            }
-            
-            print("SEARCH RECEIVED")
-            print(searchedVenuesJSON)
-            if let searchedVenues = searchedVenuesJSON[0]["response"]["venues"].array {
-                print("SearchedVenuesCount", searchedVenues.count)
-                for venue in searchedVenues {
-                    if let venueID = venue["id"].string{
-                       print("QUERYING DETAILS FOR SEARCH")
-                        self.queryVenueDetailsAndPopulateTableView(venueID: venueID)
-                    }
-                    
-                }
-            }
-            
-            DispatchQueue.main.async {
-                self.venuesTableView.reloadData()
-            }
-            
-            
-        })
-        
-    }
     
 }
 

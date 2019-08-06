@@ -10,113 +10,200 @@ import Foundation
 import MapKit
 import SwiftyJSON
 
-
-let CLIENT_ID = "OMLSM2ZUXNSMMMDNMUGRVJVMDCYYJ41NUCLDOCVT3QLLLJ1M"
-let CLIENT_SECRET = "AJ5ILVZLJQY2CRTKQY3XTRMOOCD2L54CD2CEOTHMMY2LNMCI"
-var nearbyLocationsQueried = false
-var autoCompleteVenuesQueried = false
-
-//Send URL GET Request, return JSON response
-func sendGetRequest(_ url: URL, completion: @escaping (JSON?, Error?) -> Void) {
-    
-    var request = URLRequest(url: url)
-    request.httpMethod = "GET"
-    
-    let config = URLSessionConfiguration.default
-    let session = URLSession(configuration: config)
-    
-    let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
-        guard let data = data,                            // is there data
-            let response = response as? HTTPURLResponse,  // is there HTTP response
-            (200 ..< 300) ~= response.statusCode,         // is statusCode 2XX
-            error == nil else {                           // is there no error
-                completion(nil, error)
-                return
-        }
-
-        //Convert response data into JSON and return
-        let jsonSerialization = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
-        let responseObject = JSON(arrayLiteral: jsonSerialization)
-        completion(responseObject, nil)
-        
-    })
-    task.resume()
+//Protocol to communicate data back with ViewControllers
+protocol NetworkingDelegate: class
+{
+    func appendTableViewVenues(venue: Venue)
     
 }
 
-func queryNearbyPlaces(){
+//Class to handle all networking
+class Networking {
     
-    if nearbyLocationsQueried{return}
+    var delegate: NetworkingDelegate
+    let CLIENT_ID = "OMLSM2ZUXNSMMMDNMUGRVJVMDCYYJ41NUCLDOCVT3QLLLJ1M"
+    let CLIENT_SECRET = "AJ5ILVZLJQY2CRTKQY3XTRMOOCD2L54CD2CEOTHMMY2LNMCI"
+    var nearbyLocationsQueried = false
+    var autoCompleteVenuesQueried = false
+    var callLimit:Int = 2
+    var apiVersion: String = "20180323"
     
-    nearbyLocationsQueried = true
-    //do HTTP GET to get the user's current venue
+    init(delegate: NetworkingDelegate) {
+        self.delegate = delegate
+    }
     
-    var urlComponents = NSURLComponents(string: "https://api.foursquare.com/v2/venues/explore")!
-    
-    urlComponents.queryItems = [
-        URLQueryItem(name: "ll", value: currentLocationFormattedCoords),
-        URLQueryItem(name: "client_id", value: CLIENT_ID),
-        URLQueryItem(name: "client_secret", value: CLIENT_SECRET),
-        URLQueryItem(name: "v", value: "20180323"),
-        URLQueryItem(name: "limit", value: "1"),
-    ]
-    
-    
-    
-    sendGetRequest(urlComponents.url!, completion: { responseObject, error in
-        guard let nearbyVenuesJSON = responseObject, error == nil else {
-            print(error ?? "Unknown error")
-            return
-        }
+    //Send URL GET Request, return JSON response
+    func sendGetRequest(_ url: URL, completion: @escaping (JSON?, Error?) -> Void) {
         
-        //print(nearbyVenuesJSON.description)
-        if let recommendedVenues = nearbyVenuesJSON[0]["response"]["groups"][0]["items"].array {
-            print("VenuesCount", recommendedVenues.count)
-            for venue in recommendedVenues {
-                print(venue["venue"]["id"].string)
-                if let venueID = venue["venue"]["id"].string{
-                    queryVenueDetailsAndPopulateTableView(venueID: venueID)
-                }
-                
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+            guard let data = data,                            // is there data
+                let response = response as? HTTPURLResponse,  // is there HTTP response
+                (200 ..< 300) ~= response.statusCode,         // is statusCode 2XX
+                error == nil else {                           // is there no error
+                    completion(nil, error)
+                    return
             }
-        }
+            
+            //Convert response data into JSON and return
+            let jsonSerialization = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]
+            let responseObject = JSON(arrayLiteral: jsonSerialization)
+            completion(responseObject, nil)
+            
+        })
+        task.resume()
         
+    }
+    
+    func queryNearbyVenues(){
+    //Query venues near the user's location
+
+        //Prevent multiple queries from location manager
+        if nearbyLocationsQueried{return}
+        nearbyLocationsQueried = true
+
+        //Configure API URL and parameters
+        let urlComponents = NSURLComponents(string: "https://api.foursquare.com/v2/venues/explore")!
+        urlComponents.queryItems = [
+            URLQueryItem(name: "ll", value: currentLocationFormattedCoords),
+            URLQueryItem(name: "client_id", value: CLIENT_ID),
+            URLQueryItem(name: "client_secret", value: CLIENT_SECRET),
+            URLQueryItem(name: "v", value: apiVersion),
+            URLQueryItem(name: "limit", value: String(callLimit)),
+        ]
         
+        //Send GET Request to get API venue JSON data
+        sendGetRequest(urlComponents.url!, completion: { responseObject, error in
+            guard let nearbyVenuesJSON = responseObject, error == nil else {
+                print(error ?? "Unknown error")
+                return
+            }
+            
+            //For each nearby venue, perform a second query to get venue details
+            if let nearbyVenues = nearbyVenuesJSON[0]["response"]["groups"][0]["items"].array {
+                for venue in nearbyVenues {
+                    if let venueID = venue["venue"]["id"].string{
+                        self.queryVenueDetailsAndPopulateTableView(venueID: venueID)
+                    }
+                }
+            }
+            
+        })
         
-    })
+
+    }
+    
+    func queryAutoCompleteVenues(autoCompleteString: String){
+        //Query venue auto-complete names based on text entered in search bar
+        
+        //Prevent overflow of queries
+        if autoCompleteVenuesQueried {return}
+        autoCompleteVenuesQueried = true
+        
+        //Configure API URL and parameters
+        let urlComponents = NSURLComponents(string: "https://api.foursquare.com/v2/venues/suggestcompletion")!
+        urlComponents.queryItems = [
+            URLQueryItem(name: "ll", value: currentLocationFormattedCoords),
+            URLQueryItem(name: "client_id", value: CLIENT_ID),
+            URLQueryItem(name: "client_secret", value: CLIENT_SECRET),
+            URLQueryItem(name: "v", value: apiVersion),
+            URLQueryItem(name: "limit", value: String(callLimit)),
+            URLQueryItem(name: "query", value: autoCompleteString),
+        ]
+        
+         //Send GET Request to get API venue JSON data
+        sendGetRequest(urlComponents.url!, completion: { responseObject, error in
+            guard let suggestedVenuesJSON = responseObject, error == nil else {
+                print(error ?? "Unknown error")
+                return
+            }
+            
+            //For each suggested venue, add the name to the TableView
+            if let suggestedVenues = suggestedVenuesJSON[0]["response"]["minivenues"].array {
+                for venue in suggestedVenues {
+                    if let venueName = venue["name"].string{
+                        let autoCompleteVenue = Venue()
+                        autoCompleteVenue.name = venueName
+                        self.delegate.appendTableViewVenues(venue: autoCompleteVenue)
+                    }
+                    
+                }
+            }
+        })
+        
+    }
+    
+    func queryVenuesUsingSearch(venueName: String){
+        //Query venues by using the API to search the venueName
+        
+        //Configure API URL and parameters
+        let urlComponents = NSURLComponents(string: "https://api.foursquare.com/v2/venues/search")!
+        urlComponents.queryItems = [
+            URLQueryItem(name: "ll", value: currentLocationFormattedCoords),
+            URLQueryItem(name: "client_id", value: CLIENT_ID),
+            URLQueryItem(name: "client_secret", value: CLIENT_SECRET),
+            URLQueryItem(name: "v", value: apiVersion),
+            URLQueryItem(name: "limit", value: String(callLimit)),
+            URLQueryItem(name: "query", value: venueName),
+        ]
+        
+         //Send GET Request to get API venue JSON data
+        sendGetRequest(urlComponents.url!, completion: { responseObject, error in
+            guard let searchedVenuesJSON = responseObject, error == nil else {
+                print(error ?? "Unknown error")
+                return
+            }
+            
+            //For each venue, perform a second query to get venue details
+            if let searchedVenues = searchedVenuesJSON[0]["response"]["venues"].array {
+                for venue in searchedVenues {
+                    if let venueID = venue["id"].string{
+                        self.queryVenueDetailsAndPopulateTableView(venueID: venueID)
+                    }
+                    
+                }
+            }
+            
+        })
+        
+    }
+    
     
     func queryVenueDetailsAndPopulateTableView(venueID: String){
+        //Query venues for details (address, categories, hours, price) and append the TableView with detailed venue
         
-        
-        //do HTTP GET to get the user's current venue
+        //Configure API URL and parameters
         let venueDetailsURLString = "https://api.foursquare.com/v2/venues/" + venueID
-        var urlComponents = NSURLComponents(string: venueDetailsURLString)!
-        
+        let urlComponents = NSURLComponents(string: venueDetailsURLString)!
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: CLIENT_ID),
             URLQueryItem(name: "client_secret", value: CLIENT_SECRET),
             URLQueryItem(name: "v", value: "20180323"),
         ]
         
-        
-        
+        //Send GET Request to get API venue JSON data
         sendGetRequest(urlComponents.url!, completion: { responseObject, error in
             guard let venueDetailsJSON = responseObject, error == nil else {
                 print(error?.localizedDescription ?? "Unknown error")
                 return
             }
             
-            //Initialize new default venue
-            var venueWithDetails = DefaultVenue()
+            //Initialize new venue
+            var venueWithDetails = Venue()
             
-            //Get venue details
+            //Parse JSON for venue details
             let venueDetails = venueDetailsJSON[0]["response"]["venue"]
             
-            //Get the venue name.  If the venue is missing a name, then return
+            //Parse JSON for venue name.  If the venue name is missing, then return
             guard let venueName = venueDetails["name"].string else {return}
             venueWithDetails.name = venueName
             
-            //Add venue address to venue
+            //Parse JSON for venue address.
             if let venueAddress = venueDetails["location"]["formattedAddress"].array{
                 var address = ""
                 var index = 0
@@ -128,7 +215,7 @@ func queryNearbyPlaces(){
                 venueWithDetails.address = address
             }
             
-            //Add categories to venue
+            //Parse JSON for venue categories
             if let venueCategories = venueDetails["categories"].array{
                 var categories = ""
                 for category in venueCategories {
@@ -139,7 +226,7 @@ func queryNearbyPlaces(){
                 venueWithDetails.category = categories
             }
             
-            //Add hours to venue
+            //Parse JSON for venue hours
             if let hoursTimeFrames = venueDetails["hours"]["timeframes"].array{
                 var hours = ""
                 for timeframe in hoursTimeFrames {
@@ -153,12 +240,11 @@ func queryNearbyPlaces(){
                             }
                         }
                     }
-                    
                 }
                 venueWithDetails.hours = hours
             }
             
-            //Add price to venue
+            //Parse JSON for venue price tier
             //For each tier, add another $ sign (i.e. Tier 3 = $$$)
             if let priceTier = venueDetails["price"]["tier"].int {
                 var priceTierString = ""
@@ -170,23 +256,8 @@ func queryNearbyPlaces(){
                 venueWithDetails.price = priceTierString
             }
             
-            //Add venue to the appropriate list of venues depending on app mode
-            switch self.currentTableViewMode{
-            case .defaultVenues: self.defaultVenues.append(venueWithDetails)
-            case .searchAutoComplete: self.searchAutoComplete.append(venueWithDetails)
-            case .searchedVenues: self.searchedVenues.append(venueWithDetails)
-            }
+            self.delegate.appendTableViewVenues(venue: venueWithDetails)
             
-            DispatchQueue.main.async {
-                self.venuesTableView.reloadData()
-            }
-            
-            print("DEFAULT VENUES COUNT", self.defaultVenues.count)
-            print("VENUE NAME", venueWithDetails.name)
-            print("VENUE ADDRESS", venueWithDetails.address)
-            print("VENUE CATEGORY", venueWithDetails.category)
-            print("VENUE PRICE", venueWithDetails.price)
-            print("VENUE HOURS", venueWithDetails.hours)
             
         })
         
@@ -196,4 +267,8 @@ func queryNearbyPlaces(){
     
     
     
+    
+    
 }
+
+
