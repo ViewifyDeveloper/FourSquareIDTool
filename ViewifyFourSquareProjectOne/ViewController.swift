@@ -132,6 +132,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        //Return appropriate venue array count depending on tableViewMode
+        
         switch currentTableViewMode{
         case .nearby: return nearbyVenues.count
         case .autoComplete: return autoCompleteVenues.count
