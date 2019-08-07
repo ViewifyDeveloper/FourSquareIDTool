@@ -27,7 +27,7 @@ class Networking {
     var nearbyLocationsQueried = false
     var autoCompleteVenuesQueried = false
     //API query settings (date and limit)
-    var callLimit:Int = 2
+    var callLimit:Int = 3
     var apiVersion: String = "20180323"
     
     init(delegate: NetworkingDelegate) {
@@ -218,7 +218,7 @@ class Networking {
                 var categories = ""
                 for category in venueCategories {
                     if let categoryName = category["name"].string{
-                        categories += categoryName + " "
+                        categories += categoryName + " \u{2022}"
                     }
                 }
                 venueWithDetails.category = categories

@@ -10,8 +10,9 @@ import UIKit
 import MapKit
 import SwiftyJSON
 
+//User's current location
 var currentLocation: CLLocation?
-var currentLocationFormattedCoords:String = ""//User's current location
+var currentLocationFormattedCoords:String = ""
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, NetworkingDelegate {
     
@@ -58,7 +59,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     @IBAction func beginEditingSearchBar(_ sender: Any) {
         
-        //When beginning a search, update the tableView mode and reload the tableview to clear data
+        //When beginning a search, update the tableView mode to "autoComplete" and reload the tableview to clear data
         currentTableViewMode = .autoComplete
         venuesTableView.reloadData()
         
@@ -148,7 +149,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         if let cell = venuesTableView.dequeueReusableCell(withIdentifier: "cellSearchAutoComplete", for: indexPath) as? SearchAutoCompleteCell{
            
             cell.venueName.text = venue.name
-            
+            cell.layoutIfNeeded()
             return cell
             
         } else {
@@ -175,7 +176,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             cell.venueDetailsOne.text = firstSubString
             cell.venueDetailsTwo.text = venue.hours
             cell.venueDetailsThree.text = venue.address
-            
+            cell.layoutIfNeeded()
             return cell
         } else {
             return VenueCell()
