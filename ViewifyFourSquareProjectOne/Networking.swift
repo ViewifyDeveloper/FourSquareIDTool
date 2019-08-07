@@ -122,11 +122,13 @@ class Networking {
             }
             
             //For each suggested venue, add the name to the TableView
+            //Also store the ID so that the venue can be queried if an auto-complete cell is tapped
             if let suggestedVenues = suggestedVenuesJSON[0]["response"]["minivenues"].array {
                 for venue in suggestedVenues {
-                    if let venueName = venue["name"].string{
+                    if let venueName = venue["name"].string, let venueID = venue["id"].string{
                         let autoCompleteVenue = Venue()
                         autoCompleteVenue.name = venueName
+                        autoCompleteVenue.id = venueID
                         self.delegate.appendTableViewVenues(venue: autoCompleteVenue)
                     }
                     

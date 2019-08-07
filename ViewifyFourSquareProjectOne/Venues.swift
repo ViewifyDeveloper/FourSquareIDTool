@@ -16,6 +16,7 @@ class Venue {
     var category: String = ""
     var hours: String = ""
     var price: String = ""
+    var id: String = ""
     
     init() {
         

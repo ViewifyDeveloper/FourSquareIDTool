@@ -87,6 +87,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
     }
     
+    
+    @IBAction func searchReturned(_ sender: UIButton) {
+        
+        //Perform a search using search API
+
+        guard let searchText = searchBar.text else {return}
+
+        //Set tableView mode to search and clear searchedVenues array since new search is being queried
+        currentTableViewMode = .search
+        searchedVenues = []
+        
+        networking?.queryVenuesUsingSearch(venueName: searchText)
+        
+    }
+    
+    
+    
     //Retrieve user's current location
     func getCurrentLocationAndNearbyVenues(){
         if currentLocation == nil {
@@ -186,16 +203,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     //TableView item tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Update the text in the search bar if a table view venue is tapped
-        //If the venue clicked is an auto-complete venue, then perform a venue search using the venue name
+        //If the venue clicked is an auto-complete venue, then show that particular venue's details in the tableview
         switch currentTableViewMode {
         case .nearby: searchBar.text = nearbyVenues[indexPath.row].name
         case .autoComplete:
-            let venueToSearch = autoCompleteVenues[indexPath.row].name
-            searchBar.text = venueToSearch
+            let venue = autoCompleteVenues[indexPath.row]
+            searchBar.text = venue.name
             currentTableViewMode = .search //Update tableViewMode to "search"
             searchedVenues = [] //Clear searchedVenues array since new search is being queried
             venuesTableView.reloadData() //Reload/clear tableview so user knows that a search is being performed
-            networking?.queryVenuesUsingSearch(venueName: venueToSearch) //Search for venue
+            if venue.id != "" {
+                //Update tableView with details for the auto-complete venue that was tapped
+               networking?.queryVenueDetailsAndPopulateTableView(venueID: venue.id)
+            }
         case .search:
             searchBar.text = searchedVenues[indexPath.row].name
         }

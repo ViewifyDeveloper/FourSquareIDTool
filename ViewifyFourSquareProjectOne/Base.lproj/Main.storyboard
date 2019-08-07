@@ -19,18 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVO-gl-87Z">
-                                <rect key="frame" x="57" y="84" width="300" height="70"/>
+                                <rect key="frame" x="32" y="84" width="350" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGk-gd-npA">
-                                        <rect key="frame" x="10" y="24.5" width="62.5" height="21"/>
+                                        <rect key="frame" x="10" y="24.5" width="65" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XrV-2U-JjO">
-                                        <rect key="frame" x="82.5" y="20" width="200" height="30"/>
+                                        <rect key="frame" x="85" y="20" width="220" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="aB5-oB-m5z"/>
+                                            <constraint firstAttribute="width" constant="220" id="aB5-oB-m5z"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -40,15 +40,29 @@
                                             <action selector="searchBarTextChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="g68-pm-kXM"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXm-A2-Lhd">
+                                        <rect key="frame" x="310" y="20" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="Qcu-Rz-olJ"/>
+                                            <constraint firstAttribute="height" constant="30" id="pB2-zi-cz7"/>
+                                        </constraints>
+                                        <state key="normal" image="iconSearch"/>
+                                        <connections>
+                                            <action selector="searchReturned:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oeI-B7-PqO"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Ctm-cy-vM2"/>
                                     <constraint firstItem="XrV-2U-JjO" firstAttribute="centerY" secondItem="fVO-gl-87Z" secondAttribute="centerY" id="LVT-bd-9wG"/>
-                                    <constraint firstAttribute="width" constant="300" id="MR3-jG-GGm"/>
+                                    <constraint firstAttribute="width" constant="350" id="MR3-jG-GGm"/>
+                                    <constraint firstItem="FXm-A2-Lhd" firstAttribute="centerY" secondItem="fVO-gl-87Z" secondAttribute="centerY" id="NRR-66-doR"/>
                                     <constraint firstItem="HGk-gd-npA" firstAttribute="centerY" secondItem="fVO-gl-87Z" secondAttribute="centerY" id="YOp-hi-vX2"/>
                                     <constraint firstItem="HGk-gd-npA" firstAttribute="leading" secondItem="fVO-gl-87Z" secondAttribute="leading" constant="10" id="gq1-l9-XEo"/>
+                                    <constraint firstItem="FXm-A2-Lhd" firstAttribute="leading" secondItem="XrV-2U-JjO" secondAttribute="trailing" constant="5" id="lvA-Kc-EAb"/>
                                     <constraint firstItem="XrV-2U-JjO" firstAttribute="leading" secondItem="HGk-gd-npA" secondAttribute="trailing" constant="10" id="nqN-eB-lLY"/>
+                                    <constraint firstAttribute="trailing" secondItem="FXm-A2-Lhd" secondAttribute="trailing" constant="10" id="rmK-Ss-QvH"/>
                                 </constraints>
                             </view>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vRL-Oe-Hsx">
@@ -168,4 +182,7 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconSearch" width="100" height="100"/>
+    </resources>
 </document>
