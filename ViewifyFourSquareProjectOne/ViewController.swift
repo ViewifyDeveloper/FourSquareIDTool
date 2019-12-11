@@ -12,7 +12,7 @@ import SwiftyJSON
 
 //User's current location
 var currentLocation: CLLocation?
-var currentLocationFormattedCoords:String = ""
+var currentLocationFormattedCoords:String = "34.0195,-118.4912"
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, NetworkingDelegate {
     
@@ -126,7 +126,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             currentLocation = location
         }
         guard let currentLocation = currentLocation else {return}
-        currentLocationFormattedCoords = String(Double(currentLocation.coordinate.latitude)) + "," + String(Double(currentLocation.coordinate.longitude))
+    //    currentLocationFormattedCoords = String(Double(currentLocation.coordinate.latitude)) + "," + String(Double(currentLocation.coordinate.longitude))
+        print("CURRENT LOCATION FORMATTED COORDS", currentLocationFormattedCoords)
   
         //Query nearby venues as soon as location is found
       //  networking?.queryNearbyVenues()
