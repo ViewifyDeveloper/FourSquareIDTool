@@ -38,6 +38,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboardWhenTappedAround()
+        
         
         //Request location authorizations
         self.locationManager.requestAlwaysAuthorization()
@@ -83,7 +85,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
         //If text is long enough, update app mode to "AutoComplete" and peform suggested auto-complete query
         self.currentTableViewMode = .autoComplete
-        networking?.queryAutoCompleteVenues(autoCompleteString: suggestSearchText)
+       // networking?.queryAutoCompleteVenues(autoCompleteString: suggestSearchText)
         
     }
     
@@ -127,7 +129,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         currentLocationFormattedCoords = String(Double(currentLocation.coordinate.latitude)) + "," + String(Double(currentLocation.coordinate.longitude))
   
         //Query nearby venues as soon as location is found
-        networking?.queryNearbyVenues()
+      //  networking?.queryNearbyVenues()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -193,7 +195,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
                 }
             }
             cell.venueDetailsOne.text = firstSubString
-            cell.venueDetailsTwo.text = venue.hours
+            cell.venueDetailsTwo.text = "ID=" + venue.id
             cell.venueDetailsThree.text = venue.address
             cell.layoutIfNeeded()
             return cell
@@ -219,7 +221,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
                networking?.queryVenueDetailsAndPopulateTableView(venueID: venue.id)
             }
         case .search:
-            searchBar.text = searchedVenues[indexPath.row].name
+            searchBar.text = searchedVenues[indexPath.row].id
         }
     }
     
@@ -242,3 +244,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
 }
 
+//Hide keyboard when tapped elsewhere
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

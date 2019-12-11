@@ -195,7 +195,7 @@ class Networking {
             
             //Initialize new venue
             var venueWithDetails = Venue()
-            
+            venueWithDetails.id = venueID
             //Parse JSON for venue details
             let venueDetails = venueDetailsJSON[0]["response"]["venue"]
             
