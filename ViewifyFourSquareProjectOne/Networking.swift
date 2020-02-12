@@ -10,6 +10,7 @@ import Foundation
 import MapKit
 import SwiftyJSON
 
+//Adding a test comment for the pull request
 //Protocol to communicate data back with ViewControllers
 protocol NetworkingDelegate: class
 {
